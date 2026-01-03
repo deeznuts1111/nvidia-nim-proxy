@@ -19,20 +19,20 @@ MODELS = {
         "reasoning": True,
         "description": "DeepSeek R1 with reasoning"
     },
-    "deepseek-ai/deepseek-r1-distill-llama-70b": {
-        "name": "deepseek-ai/deepseek-r1-distill-llama-70b",
+    "deepseek-ai/deepseek-r1_5": {
+        "name": "deepseek-ai/deepseek-r1_5",
         "reasoning": True,
-        "description": "DeepSeek R1 Distilled 70B"
+        "description": "DeepSeek R1.5 (Updated)"
     },
-    "deepseek-ai/deepseek-coder-6.7b-instruct": {
-        "name": "deepseek-ai/deepseek-coder-6.7b-instruct",
+    "deepseek-ai/deepseek-v3_1": {
+        "name": "deepseek-ai/deepseek-v3_1",
         "reasoning": False,
-        "description": "DeepSeek Coder 6.7B"
+        "description": "DeepSeek V3.1 (Fast, Recommended)"
     },
-    "deepseek-ai/deepseek-v3": {
-        "name": "deepseek-ai/deepseek-v3",
+    "deepseek-ai/deepseek-v3_2": {
+        "name": "deepseek-ai/deepseek-v3_2",
         "reasoning": False,
-        "description": "DeepSeek V3"
+        "description": "DeepSeek V3.2 (Latest)"
     }
 }
 
