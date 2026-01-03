@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify, Response
+from flask_cors import CORS
 import requests
 import os
 import json
 from datetime import datetime
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all origins
 
 # NVIDIA NIM API Configuration
 NVIDIA_API_KEY = os.environ.get('NVIDIA_API_KEY', '')
@@ -80,6 +82,10 @@ def list_models():
 def chat_completions():
     """Proxy chat completions to NVIDIA NIM API"""
     try:
+        # Check if API key is configured
+        if not NVIDIA_API_KEY:
+            return jsonify({"error": "NVIDIA_API_KEY not configured in environment variables"}), 500
+        
         data = request.json
         
         # Extract parameters
@@ -129,6 +135,15 @@ def chat_completions():
             stream=stream
         )
         
+        # Check for errors from NVIDIA API
+        if response.status_code != 200:
+            error_text = response.text
+            print(f"NVIDIA API Error: {response.status_code} - {error_text}")
+            return jsonify({
+                "error": f"NVIDIA API error: {error_text}",
+                "status_code": response.status_code
+            }), response.status_code
+        
         if stream:
             def generate():
                 for chunk in response.iter_lines():
@@ -172,7 +187,10 @@ def chat_completions():
             return jsonify(result)
             
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        print(f"Error in chat_completions: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": str(e), "type": type(e).__name__}), 500
 
 @app.route('/health', methods=['GET'])
 def health():
