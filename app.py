@@ -129,7 +129,7 @@ def chat_completions():
         
         # Make request to NVIDIA API
         response = requests.post(
-            f"{NVIDIA_BASE_URL}/chat/completions",
+            f"{NVIDIA_BASE_URL}/v1/chat/completions",
             headers=headers,
             json=nvidia_payload,
             stream=stream
