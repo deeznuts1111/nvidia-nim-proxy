@@ -13,7 +13,7 @@ NVIDIA_API_KEY = os.environ.get("NVIDIA_API_KEY")
 
 NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1/inference"
 
-DEFAULT_MODEL = "deepseek-ai/deepseek-v3_2"
+DEFAULT_MODEL = "meta/llama3-8b-instruct"
 
 # ================= HELPERS =================
 
